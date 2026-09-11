@@ -1,0 +1,331 @@
+{
+  "report_revision": 2,
+  "correction": "Exact predicted-versus-observed catch-set comparison; leaf_oracle rows reported as skipped rather than counted as baseline passes; MUT-12 reduced to a single removed condition",
+  "corpus_unmodified_by_this_run": true,
+  "runtime_unicode_database": "15.0.0",
+  "corpus_file": "uor-jcs-nfc-vectors-v0.1-rc5.json",
+  "corpus_sha256": "63b2bc42f69058731475372f3d1a97fc01862692c6900a036861a155c0e95e1b",
+  "baseline": {
+    "passed": 56,
+    "skipped": 3,
+    "skipped_ids": [
+      "ecma-number-01",
+      "ecma-number-02",
+      "ecma-number-03"
+    ],
+    "failed": 0,
+    "total": 59,
+    "skip_reason": "leaf_oracle rows assert a formatter output rather than a digest; they are not replayable through admit/canonicalize and are not counted as passes"
+  },
+  "mutants": [
+    {
+      "id": "MUT-01-value-based-admission",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-num-02",
+        "admit-fail-num-03",
+        "admit-fail-num-04",
+        "admit-fail-num-05",
+        "admit-fail-num-06"
+      ],
+      "caught": [
+        "admit-fail-num-02",
+        "admit-fail-num-03",
+        "admit-fail-num-04",
+        "admit-fail-num-05",
+        "admit-fail-num-06"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "reproduces the audited defect: float(2**53) admitted while 2**53 rejected"
+    },
+    {
+      "id": "MUT-02-type-based-guard",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-rng-01",
+        "admit-fail-rng-02"
+      ],
+      "caught": [
+        "admit-fail-rng-01",
+        "admit-fail-rng-02"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "admit-fail-json-01 is NOT predicted: 01 is refused by the host parser before any number hook runs, so this mutant cannot change its outcome."
+    },
+    {
+      "id": "MUT-03-no-grammar-check",
+      "status": "SURVIVED",
+      "predicted": [],
+      "caught": [],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "EXPECTED SURVIVOR: CPython's JSON scanner only ever hands parse_int tokens already matching -?(0|[1-9][0-9]*), so INT_TOKEN.match can never fail. The grammar check is unreachable defensive code in THIS host parser. A host with a laxer scanner would need it. Documented, not removed."
+    },
+    {
+      "id": "MUT-04-range-on-value",
+      "status": "SURVIVED",
+      "predicted": [],
+      "caught": [],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "EQUIVALENT MUTANT: binary64 is exact through 2^53, so a value-based bound test and a token-based one agree at every reachable boundary. Behaviourally indistinguishable, not an untested check."
+    },
+    {
+      "id": "MUT-05-no-duplicate-detection",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-01",
+        "admit-fail-str-02",
+        "admit-fail-str-02b"
+      ],
+      "caught": [
+        "admit-fail-str-01",
+        "admit-fail-str-02",
+        "admit-fail-str-02b"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-06-compare-before-escape-decode",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-01",
+        "admit-fail-str-02",
+        "admit-fail-str-02b"
+      ],
+      "caught": [
+        "admit-fail-str-01",
+        "admit-fail-str-02",
+        "admit-fail-str-02b"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-07-no-bom-check",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-05"
+      ],
+      "caught": [
+        "admit-fail-str-05"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-08-no-surrogate-scan",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-07",
+        "admit-fail-str-08",
+        "admit-fail-str-09"
+      ],
+      "caught": [
+        "admit-fail-str-07",
+        "admit-fail-str-08",
+        "admit-fail-str-09"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-09-scan-values-not-names",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-08"
+      ],
+      "caught": [
+        "admit-fail-str-08"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-10-reject-all-surrogates",
+      "status": "EXACT",
+      "predicted": [
+        "admit-ok-11",
+        "admit-ok-12",
+        "uor-jcs-nfc-kat-06"
+      ],
+      "caught": [
+        "admit-ok-11",
+        "admit-ok-12",
+        "uor-jcs-nfc-kat-06"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "over-rejection: caught only by ACCEPT vectors"
+    },
+    {
+      "id": "MUT-11-no-trailing-check",
+      "status": "EXACT",
+      "predicted": [
+        "admit-fail-str-03",
+        "admit-fail-str-04"
+      ],
+      "caught": [
+        "admit-fail-str-03",
+        "admit-fail-str-04"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-12-nfc-after-sort",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-05"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-05"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "the class CPB's jcs-n note recorded as uncovered by any published corpus"
+    },
+    {
+      "id": "MUT-13-nfc-names-only",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-04"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-04"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-14-no-nfc",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-02",
+        "uor-jcs-nfc-kat-04",
+        "uor-jcs-nfc-kat-05",
+        "uor-jcs-nfc-fail-03"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-02",
+        "uor-jcs-nfc-kat-04",
+        "uor-jcs-nfc-kat-05",
+        "uor-jcs-nfc-fail-03"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "equivalent to the `jcs` profile. Removing normalization necessarily removes post-NFC collision detection and the NFC-dependent sort order -- those are consequences of the single removed condition, not separate removals."
+    },
+    {
+      "id": "MUT-15-collision-last-wins",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-fail-03"
+      ],
+      "caught": [
+        "uor-jcs-nfc-fail-03"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-16-sort-by-code-point",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-06"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-06"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "diverges only above the BMP"
+    },
+    {
+      "id": "MUT-17-ensure-ascii",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-02",
+        "uor-jcs-nfc-kat-03",
+        "uor-jcs-nfc-kat-04",
+        "uor-jcs-nfc-kat-04b",
+        "uor-jcs-nfc-kat-05",
+        "uor-jcs-nfc-kat-06",
+        "uor-jcs-nfc-kat-13"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-02",
+        "uor-jcs-nfc-kat-03",
+        "uor-jcs-nfc-kat-04",
+        "uor-jcs-nfc-kat-04b",
+        "uor-jcs-nfc-kat-05",
+        "uor-jcs-nfc-kat-06",
+        "uor-jcs-nfc-kat-13"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "every vector carrying a non-ASCII character changes, which is all seven"
+    },
+    {
+      "id": "MUT-18-uppercase-hex",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-07"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-07"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-19-long-form-escapes",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-07"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-07"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": ""
+    },
+    {
+      "id": "MUT-20-drop-empty-members",
+      "status": "EXACT",
+      "predicted": [
+        "uor-jcs-nfc-kat-08"
+      ],
+      "caught": [
+        "uor-jcs-nfc-kat-08"
+      ],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "the behavior of the withdrawn jcs-n"
+    },
+    {
+      "id": "MUT-21-reserialize-noop",
+      "status": "SURVIVED",
+      "predicted": [],
+      "caught": [],
+      "predicted_not_caught": [],
+      "caught_not_predicted": [],
+      "note": "EXPECTED SURVIVOR: no corpus vector can catch this. Documents the limit."
+    }
+  ],
+  "unexercised": [],
+  "divergent": []
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "uor-generation-receipt-v1",
+  "corpus_file": "uor-jcs-nfc-vectors-v0.1-rc5.json",
+  "corpus_sha256": "63b2bc42f69058731475372f3d1a97fc01862692c6900a036861a155c0e95e1b",
+  "generator_file": "gen_vectors.py",
+  "generator_sha256": "3fa097346a4b2a6893b0b4cd2af00b91a859779cdbb9d5d19161a3cb9605fde0",
+  "reference_file": "uor_jcs_nfc_ref.py",
+  "reference_sha256": "56310ea06e9b80960d69b0ff81569574e3a010987bed1a64b3c0929042e4236f",
+  "runtime": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.44-fc-v32-x86_64-with-glibc2.39",
+    "unicode_database": "15.0.0"
+  },
+  "generated_at_utc": "2026-09-11T13:20:46.827865+00:00"
+}
